@@ -61,8 +61,11 @@ while True:
 
     cv2.imshow('Adding faces data', img)
     cv2.waitKey(1);
-    if(sample_number>100):
-        cap.release()
-        cv2.destroyAllWindows()
-        break;
+    # Check xem có bấm q hoặc trên 100 ảnh sample thì thoát
+    if cv2.waitKey(10) & 0xFF == ord('q'):
+        break
+    elif sample_number > 100:
+        break
+cap.release()
+cv2.destroyAllWindows()
 
