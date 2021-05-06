@@ -102,7 +102,6 @@ def updateFrame():
         if (dist < 70):
             profile = getProfile(id)
         if (profile != None):
-            # cv2.putText(img, "Name: " + str(profile[1]), (x, y + h + 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
             print(str(profile[1]))
             print(str(profile[0]))
             txt_username.insert(END, str(profile[1]))
