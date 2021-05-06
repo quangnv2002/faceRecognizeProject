@@ -1,4 +1,3 @@
-import profile
 
 import numpy as np
 import os
