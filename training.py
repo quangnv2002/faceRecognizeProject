@@ -27,6 +27,6 @@ recognizer.train(faces, Ids)
 if not os.path.exists('trainer'):
     os.makedirs('trainer')
 
-recognizer.save('huanluyen/huanluyen.yml')
+recognizer.save('trainer/huanluyen.yml')
 cv2.destroyAllWindows()
 print("trained!")

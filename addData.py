@@ -14,7 +14,7 @@ import PIL.ImageTk
 from PIL import Image,ImageTk
 #--------------------------------------------------------------------
 # CODE NHAP DU LIEU HINH ANH VA DAT TEN KET NOI CO SO DU LIEU
-def insertOrUpdate(id, name):
+def insertOrUpdate(id, name, age, gender,position):
     #connecting to the db
     conn =sqlite3.connect("FaceBase.db")
     #check if id already exists
@@ -25,22 +25,25 @@ def insertOrUpdate(id, name):
     for row in cursor:
         isRecordExist=1
     if isRecordExist==1:
-        query="UPDATE People SET Name="+str(name)+" WHERE ID="+str(id)
+        query="UPDATE People SET Name="+str(name)+",Age="+str(age)+",Gender="+str(gender)+",Position="+str(position)+"WHERE ID="+str(id)
     else:
-        query="INSERT INTO People(ID, Name) VALUES('"+str(id)+"','"+str(name)+"')"
+        query="INSERT INTO People(ID, Name) VALUES('"+str(id)+"','"+str(name)+"','"+str(age)+"','"+str(gender)+"','"+str(position)+"')"
     print(query)
     conn.execute(query)
     conn.commit()
     conn.close()
 
 
-face_cascade = cv2.CascadeClassifier('thuvien/khuon_mat.xml')
+face_cascade = cv2.CascadeClassifier('library/khuon_mat.xml')
 cap = cv2.VideoCapture(0)
 id = input('Mã nhân viên : ')
 name = input('Họ tên nhân viên : ')
+age = input('Tuổi : ')
+gender = input('Giới tính : ')
+position = input('Chức vụ : ')
 print("Bắt đầu lấy dữ liệu khuôn mặt ! ")
 print("Vui lòng nhìn thẳng vào máy quay . . .")
-insertOrUpdate(id, name)
+insertOrUpdate(id, name, age, gender, position)
 sample_number = 0
 
 
@@ -60,7 +63,7 @@ while True:
         cv2.rectangle(img, (x,y), (x+w, y+h), (0,255,0), 2)
 
 
-    cv2.imshow('Adding faces data', img)
+    cv2.imshow('Adding faces data interface', img)
     cv2.waitKey(1);
     # Check xem có bấm q hoặc trên 100 ảnh sample thì thoát
     if cv2.waitKey(10) & 0xFF == ord('q'):

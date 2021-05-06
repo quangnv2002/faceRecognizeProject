@@ -14,9 +14,9 @@ from datetime import datetime
 #--------------------------------------------------------------------
 # CODE KET NOI DU LIEU NHAN DIEN HINH ANH KHUON MAT
 
-face_cascade = cv2.CascadeClassifier('thuvien/khuon_mat.xml')
+face_cascade = cv2.CascadeClassifier('library/khuon_mat.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-recognizer.read("huanluyen/huanluyen.yml")
+recognizer.read("trainer/huanluyen.yml")
 
 def getProfile(Id):
     conn=sqlite3.connect("FaceBase.db")
