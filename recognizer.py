@@ -9,6 +9,7 @@ from tkinter import *
 import PIL.Image # cài đặt pillow
 import PIL.ImageTk
 from PIL import Image,ImageTk
+import csv
 from datetime import datetime
 #--------------------------------------------------------------------
 # CODE KET NOI DU LIEU NHAN DIEN HINH ANH KHUON MAT
@@ -108,8 +109,11 @@ def updateFrame():
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
             txt_attendanceTime.insert(END,dt_string)
-            # txt_username.delete('1.0', END)
-            markAttendance(str(profile[1]))
+            # txt_username.delete('1.0', END
+            #             mar)kAttendance(str(profile[1]))
+
+            # c = csv.writer(open("Record.csv", "wb"))
+            # c.writerow(str(profile[1]))
 
         else:
             print("unknown")
