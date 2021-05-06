@@ -27,7 +27,8 @@ def insertOrUpdate(id, name):
     if isRecordExist==1:
         query="UPDATE People SET Name="+str(name)+" WHERE ID="+str(id)
     else:
-        query="INSERT INTO People(ID, Name) VALUES("+str(id)+","+str(name)+")"
+        query="INSERT INTO People(ID, Name) VALUES('"+str(id)+"','"+str(name)+"')"
+    print(query)
     conn.execute(query)
     conn.commit()
     conn.close()
