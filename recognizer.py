@@ -59,15 +59,15 @@ desc.config(font=("Goudy old style",10,"bold"),fg="#d77337",bg="white")
 desc.place(x=30,y=80)
 
 lbl_username = Label(frame_info,text="Name",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=110)
-txt_username = Entry(frame_info,font=("times new roman",15),bg="light gray")
+txt_username = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="light gray")
 txt_username.place(x=30,y=135,width=250,height=30)
 
 lbl_id = Label(frame_info,text="ID",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=165)
-txt_id = Entry(frame_info,font=("times new roman",15),bg="light gray")
+txt_id = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="light gray")
 txt_id.place(x=30,y=190,width=250,height=30)
 
 lbl_attendanceTime = Label(frame_info,text="Attendance Time",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=220)
-txt_attendanceTime = Text(frame_info,font=("times new roman",15),bg="light gray")
+txt_attendanceTime = Text(frame_info,font=("times new roman",13,"bold"),bg="light gray")
 txt_attendanceTime.place(x=30,y=245,width=250,height=30)
 
 # export_btn = Button(window,text="Export",font=("times new roman",13),fg="white",bg="#d77337").place(x=225,y=538)
@@ -82,8 +82,8 @@ def changeEntryText(entry, text):
 
 
 def markAttendance(name):
-    with open('Record.csv', 'r+') as f:
-        myDataList = []
+    with open('Record.csv','r+') as f:
+        myDataList = f.readline()
         nameList = []
         for line in myDataList:
             entry = line.split(',')
@@ -92,6 +92,7 @@ def markAttendance(name):
             now = datetime.now()
             dtString  = now.strftime('%H:%M:%S')
             f.writelines(f'\n{name},{dtString}')
+
 
 def updateFrame():
     global canvas,photo
@@ -106,7 +107,6 @@ def updateFrame():
         cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
         id, dist = recognizer.predict(gray[y:y + h, x:x + w])
 
-
         profile = None
         if (dist < 70):
             profile = getProfile(id)
@@ -120,14 +120,11 @@ def updateFrame():
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
             changeEntryText(txt_attendanceTime, dt_string)
-            # txt_username.delete('1.0', END
-            #             mar)kAttendance(str(profile[1]))
-
-            # c = csv.writer(open("Record.csv", "wb"))
-            # c.writerow(str(profile[1]))
+            markAttendance(str(profile[1]))
 
         else:
             print("unknown")
+
     photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(gray))
     canvas.create_image(0, 0, image=photo, anchor=tkinter.NW)
 
