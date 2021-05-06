@@ -70,7 +70,19 @@ lbl_attendanceTime = Label(frame_info,text="Attendance Time",font=("Goudy old st
 txt_attendanceTime = Text(frame_info,font=("times new roman",15),bg="light gray")
 txt_attendanceTime.place(x=30,y=245,width=250,height=30)
 
-export_btn = Button(window,text="Export",font=("times new roman",13),fg="white",bg="#d77337").place(x=225,y=538)
+# export_btn = Button(window,text="Export",font=("times new roman",13),fg="white",bg="#d77337").place(x=225,y=538)
+
+def markAttendance(name):
+    with open('Record.csv', 'r+') as f:
+        myDataList = []
+        nameList = []
+        for line in myDataList:
+            entry = line.split(',')
+            nameList.append(entry[0])
+        if name not in nameList:
+            now = datetime.now()
+            dtString  = now.strftime('%H:%M:%S')
+            f.writelines(f'\n{name},{dtString}')
 
 def updateFrame():
     global canvas,photo
@@ -99,6 +111,7 @@ def updateFrame():
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
             txt_attendanceTime.insert(END,dt_string)
             # txt_username.delete('1.0', END)
+            markAttendance(str(profile[1]))
 
         else:
             print("unknown")
