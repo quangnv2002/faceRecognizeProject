@@ -72,6 +72,15 @@ txt_attendanceTime.place(x=30,y=245,width=250,height=30)
 
 # export_btn = Button(window,text="Export",font=("times new roman",13),fg="white",bg="#d77337").place(x=225,y=538)
 
+# function to change tkinter entry text
+def changeEntryText(entry, text):
+    try:
+        entry.delete(0,END)
+    except:
+        entry.delete('1.0', END)
+    entry.insert(END,text)
+
+
 def markAttendance(name):
     with open('Record.csv', 'r+') as f:
         myDataList = []
@@ -104,11 +113,13 @@ def updateFrame():
         if (profile != None):
             print(str(profile[1]))
             print(str(profile[0]))
-            txt_username.insert(END, str(profile[1]))
-            txt_id.insert(END, str(profile[0]))
+            # txt_username.insert(END, str(profile[1]))
+            changeEntryText(txt_username, str(profile[1]))
+            # txt_id.insert(END, str(profile[0]))
+            changeEntryText(txt_id, str(profile[0]))
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-            txt_attendanceTime.insert(END,dt_string)
+            changeEntryText(txt_attendanceTime, dt_string)
             # txt_username.delete('1.0', END
             #             mar)kAttendance(str(profile[1]))
 
