@@ -32,7 +32,7 @@ def getProfile(Id):
 window = Tk()
 window.title("Phần mềm điểm danh")
 window.resizable(False,False)
-window.geometry("500x600")
+window.geometry("800x400")
 window.iconbitmap("Image/UET-logo.ico")
 
 bg_loading = Image.open("Image/background.jpg")
@@ -44,31 +44,44 @@ video =cv2.VideoCapture(0)
 canvas_w = video.get(cv2.CAP_PROP_FRAME_WIDTH)//2.5
 canvas_h = video.get(cv2.CAP_PROP_FRAME_HEIGHT)//2.5
 canvas = Canvas(window,width = canvas_w,height = canvas_h, bg ="#EEDD2F")
-canvas.pack(pady = 10)
-
+#canvas.pack(pady = 10)
+canvas.place(x=49,y=45)
 photo = None
 
 note_lbl = Label(window,text="Please look directly at the camera ",font=("Goudy old style",15,"italic"),fg="#d77337")
-note_lbl.place(x=125,y=206.5)
+note_lbl.place(x=54,y=242)
+
+# lbl_id = Label(window,text="ID",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=165)
+txt_id = Entry(window,font=("times new roman",13,"bold"),bg="light gray")
+txt_id.place(x=127,y=285,width=78,height=30)
 
 frame_info = Frame(window,bg="white")
-frame_info.place(x=80,y=250,height=300,width=350)
-frame_title = Label(frame_info,text="Information",font=("Impact",30,"bold"),fg="#d77337",bg="white").place(x=30,y=30)
+frame_info.place(x=400,y=40,height=300,width=350)
+frame_title = Label(frame_info,text="Information",font=("Impact",35,"bold"),fg="#d77337",bg="white").place(x=30,y=15)
 desc = Label(frame_info,text="Time deals gently only with those who take it gently")
 desc.config(font=("Goudy old style",10,"bold"),fg="#d77337",bg="white")
-desc.place(x=30,y=80)
+desc.place(x=30,y=70)
 
 lbl_username = Label(frame_info,text="Name",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=110)
 txt_username = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="light gray")
-txt_username.place(x=30,y=135,width=250,height=30)
+txt_username.place(x=100,y=110,width=200,height=25)
 
-lbl_id = Label(frame_info,text="ID",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=165)
-txt_id = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="light gray")
-txt_id.place(x=30,y=190,width=250,height=30)
+lbl_age = Label(frame_info,text="Age",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=145)
+txt_age = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="light gray")
+txt_age.place(x=100,y=145,width=200,height=25)
 
-lbl_attendanceTime = Label(frame_info,text="Attendance Time",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=220)
+lbl_gender = Label(frame_info,text="Gender",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=180)
+txt_gender = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="light gray")
+txt_gender.place(x=100,y=180,width=200,height=25)
+
+lbl_position = Label(frame_info,text="Position",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=215)
+txt_position = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="light gray")
+txt_position.place(x=100,y=215,width=200,height=25)
+
+lbl_attendanceTime = Label(frame_info,text="A.Time",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=250)
 txt_attendanceTime = Text(frame_info,font=("times new roman",13,"bold"),bg="light gray")
-txt_attendanceTime.place(x=30,y=245,width=250,height=30)
+txt_attendanceTime.place(x=100,y=250,width=200,height=25)
+
 
 # export_btn = Button(window,text="Export",font=("times new roman",13),fg="white",bg="#d77337").place(x=225,y=538)
 
@@ -113,10 +126,17 @@ def updateFrame():
         if (profile != None):
             print(str(profile[1]))
             print(str(profile[0]))
+            print(str(profile[2]))
+            print(str(profile[3]))
+            print(str(profile[4]))
             # txt_username.insert(END, str(profile[1]))
             changeEntryText(txt_username, str(profile[1]))
             # txt_id.insert(END, str(profile[0]))
             changeEntryText(txt_id, str(profile[0]))
+            changeEntryText(txt_age, str(profile[2]))
+            changeEntryText(txt_gender, str(profile[3]))
+            changeEntryText(txt_position, str(profile[4]))
+
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
             changeEntryText(txt_attendanceTime, dt_string)
