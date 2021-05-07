@@ -14,7 +14,7 @@ import PIL.ImageTk
 from PIL import Image,ImageTk
 #--------------------------------------------------------------------
 # CODE NHAP DU LIEU HINH ANH VA DAT TEN KET NOI CO SO DU LIEU
-def insertOrUpdate(id, name, age, gender,position):
+def insertOrUpdate(id, name, dob, gender,position):
     #connecting to the db
     conn =sqlite3.connect("FaceBase.db")
     #check if id already exists
@@ -25,9 +25,9 @@ def insertOrUpdate(id, name, age, gender,position):
     for row in cursor:
         isRecordExist=1
     if isRecordExist==1:
-        query="UPDATE People SET Name="+str(name)+",Age="+str(age)+",Gender="+str(gender)+",Position="+str(position)+"WHERE ID="+str(id)
+        query="UPDATE People SET Name="+str(name)+",DateofBirth="+str(dob)+",Gender="+str(gender)+",Position="+str(position)+"WHERE ID="+str(id)
     else:
-        query="INSERT INTO People(ID, Name) VALUES('"+str(id)+"','"+str(name)+"','"+str(age)+"','"+str(gender)+"','"+str(position)+"')"
+        query="INSERT INTO People(ID, Name) VALUES('"+str(id)+"','"+str(name)+"','"+str(dob)+"','"+str(gender)+"','"+str(position)+"')"
     print(query)
     conn.execute(query)
     conn.commit()
@@ -38,12 +38,12 @@ face_cascade = cv2.CascadeClassifier('library/khuon_mat.xml')
 cap = cv2.VideoCapture(0)
 id = input('Mã nhân viên : ')
 name = input('Họ tên nhân viên : ')
-age = input('Tuổi : ')
+dob = input('Năm sinh : ')
 gender = input('Giới tính : ')
 position = input('Chức vụ : ')
 print("Bắt đầu lấy dữ liệu khuôn mặt ! ")
 print("Vui lòng nhìn thẳng vào máy quay . . .")
-insertOrUpdate(id, name, age, gender, position)
+insertOrUpdate(id, name, dob, gender, position)
 sample_number = 0
 
 

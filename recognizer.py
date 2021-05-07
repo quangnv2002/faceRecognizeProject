@@ -53,7 +53,7 @@ note_lbl.place(x=54,y=242)
 
 # lbl_id = Label(window,text="ID",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=165)
 txt_id = Entry(window,font=("times new roman",13,"bold"),bg="light gray")
-txt_id.place(x=127,y=285,width=78,height=30)
+txt_id.place(x=139,y=285,width=78,height=30)
 
 frame_info = Frame(window,bg="white")
 frame_info.place(x=400,y=40,height=300,width=350)
@@ -66,7 +66,7 @@ lbl_username = Label(frame_info,text="Name",font=("Goudy old style",13,"bold"),b
 txt_username = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="light gray")
 txt_username.place(x=100,y=110,width=200,height=25)
 
-lbl_age = Label(frame_info,text="Age",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=145)
+lbl_age = Label(frame_info,text="D.o.B",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=145)
 txt_age = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="light gray")
 txt_age.place(x=100,y=145,width=200,height=25)
 
@@ -79,7 +79,7 @@ txt_position = Entry(frame_info,font=("times new roman",13,"italic","bold"),bg="
 txt_position.place(x=100,y=215,width=200,height=25)
 
 lbl_attendanceTime = Label(frame_info,text="A.Time",font=("Goudy old style",13,"bold"),bg ="white",fg="gray").place(x=30,y=250)
-txt_attendanceTime = Text(frame_info,font=("times new roman",13,"bold"),bg="light gray")
+txt_attendanceTime = Text(frame_info,font=("times new roman",13,"bold","italic"),bg="light gray")
 txt_attendanceTime.place(x=100,y=250,width=200,height=25)
 
 

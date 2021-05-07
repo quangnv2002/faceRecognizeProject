@@ -29,4 +29,4 @@ if not os.path.exists('trainer'):
 
 recognizer.save('trainer/huanluyen.yml')
 cv2.destroyAllWindows()
-print("trained!")
+print("Trained!")
