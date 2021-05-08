@@ -1,6 +1,6 @@
 
 import numpy as np
-import os
+import os, math
 import pickle, sqlite3
 import cv2
 import tkinter
@@ -117,18 +117,46 @@ def changeEntryText(entry, text):
 
 
 
-def markAttendance(name):
-    with open('Record.csv','r+') as f:
-        myDataList = f.readline()
-        nameList = []
-        for line in myDataList:
-            entry = line.split(',')
-            nameList.append(entry[0])
-        if name not in nameList:
-            now = datetime.now()
-            dtString  = now.strftime('%H:%M:%S')
-            f.writelines(f'\n{name},{dtString}')
 
+
+# def markAttendance(name):
+#     with open('Record.csv', 'r+') as f:
+#         myDataList = []
+#         nameList = []
+#         for line in myDataList:
+#             entry = line.split(',')
+#             nameList.append(entry[0])
+#         if name not in nameList:
+#             now = datetime.now()
+#             dtString  = now.strftime('%H:%M:%S')
+#             f.writelines(f'\n{name},{dtString}')
+        
+def markAttendance(name):
+  now = datetime.now()
+  found = False
+  dtString  = now.strftime("%m/%d/%Y, %H:%M:%S")
+  with open('Record.csv','r+') as csv_file:
+    csv_writer=csv.writer(csv_file,delimiter=',')
+    csv_reader=csv.reader(csv_file, delimiter=',')
+    data=list(csv_reader)
+    reversedList = reversed(data)
+    # lat nguoc danh sach tim tu cuoi len
+    for i,j in enumerate(reversedList):
+        if(isinstance(j,list) and len(j)==2):
+            if(j[0] == name):
+                found = True
+                dateDif= math.floor((datetime.now()-datetime.strptime(j[1],'%m/%d/%Y, %H:%M:%S')).total_seconds())
+                print('thoi gian ke tu lan cuoi diem danh: ', (dateDif),'s')
+                # nhieu hon 8 tieng = 28800s thi luu lai
+                if(dateDif>300):
+                    csv_writer.writerow([name,dtString])
+                    speak("Attendance check successfully")
+                    break
+                break
+    if(found == False):
+        csv_writer.writerow([name,dtString])
+
+     
 
 def updateFrame():
     global canvas,photo
@@ -159,7 +187,6 @@ def updateFrame():
             changeEntryText(txt_age, str(profile[2]))
             changeEntryText(txt_gender, str(profile[3]))
             changeEntryText(txt_position, str(profile[4]))
-
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
             changeEntryText(txt_attendanceTime, dt_string)
@@ -170,7 +197,6 @@ def updateFrame():
 
     photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(gray))
     canvas.create_image(0, 0, image=photo, anchor=tkinter.NW)
-
     window.after(15, updateFrame)
 
 updateFrame()
