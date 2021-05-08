@@ -12,8 +12,17 @@ from tkinter import *
 import PIL.Image # cài đặt pillow
 import PIL.ImageTk
 from PIL import Image,ImageTk
+import pyttsx3
 #--------------------------------------------------------------------
-# CODE NHAP DU LIEU HINH ANH VA DAT TEN KET NOI CO SO DU LIEU
+bot = pyttsx3.init()
+voice = bot.getProperty('voices')
+bot.setProperty('voice',voice[1].id) # chon giong nu
+def speak(audio):
+    print('BOT : ')
+    print(audio)
+    bot.say(audio)
+    bot.runAndWait()
+
 def insertOrUpdate(id, name, dob, gender,position):
     #connecting to the db
     conn =sqlite3.connect("FaceBase.db")
@@ -36,11 +45,14 @@ def insertOrUpdate(id, name, dob, gender,position):
 
 face_cascade = cv2.CascadeClassifier('library/khuon_mat.xml')
 cap = cv2.VideoCapture(0)
+speak("Please complete all information")
 id = input('Mã nhân viên : ')
 name = input('Họ tên nhân viên : ')
 dob = input('Năm sinh : ')
 gender = input('Giới tính : ')
 position = input('Chức vụ : ')
+
+speak("Start getting face data. Please look directly at the camera ")
 print("Bắt đầu lấy dữ liệu khuôn mặt ! ")
 print("Vui lòng nhìn thẳng vào máy quay . . .")
 insertOrUpdate(id, name, dob, gender, position)
@@ -72,4 +84,4 @@ while True:
         break
 cap.release()
 cv2.destroyAllWindows()
-
+speak("Completed")

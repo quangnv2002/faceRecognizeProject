@@ -176,7 +176,7 @@ def updateFrame():
 updateFrame()
 
 window.mainloop()
-
+speak("Good bye")
 
 
 

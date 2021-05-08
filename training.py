@@ -2,8 +2,17 @@ import os
 import cv2
 import numpy as np
 from PIL import Image
+import pyttsx3
 
-# CODE TRAINING (HUAN LUYEN) HINH ANH NHAN DIEN
+bot = pyttsx3.init()
+voice = bot.getProperty('voices')
+bot.setProperty('voice',voice[1].id) # chon giong nu
+def speak(audio):
+    print('BOT : ')
+    print(audio)
+    bot.say(audio)
+    bot.runAndWait()
+speak("Start Training !")
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 path = 'data_face'
 
@@ -30,3 +39,4 @@ if not os.path.exists('trainer'):
 recognizer.save('trainer/huanluyen.yml')
 cv2.destroyAllWindows()
 print("Trained!")
+speak("Trained!")
