@@ -13,7 +13,7 @@ import PIL.Image # cài đặt pillow
 import PIL.ImageTk
 from PIL import Image,ImageTk
 import pyttsx3
-#--------------------------------------------------------------------
+#----------------------------------------------------
 bot = pyttsx3.init()
 voice = bot.getProperty('voices')
 bot.setProperty('voice',voice[1].id) # chon giong nu
@@ -79,9 +79,12 @@ while True:
     cv2.waitKey(1);
     # Check xem có bấm q hoặc trên 100 ảnh sample thì thoát
     if cv2.waitKey(10) & 0xFF == ord('q'):
+        import training
         break
     elif sample_number > 100:
+        import training
         break
 cap.release()
 cv2.destroyAllWindows()
 speak("Completed")
+

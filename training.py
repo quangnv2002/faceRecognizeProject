@@ -26,7 +26,7 @@ def getImagesWithID(path):
         ID=int(os.path.split(imagePath)[-1].split('.')[1])
         faces.append(faceNp)
         IDs.append(ID)
-        cv2.imshow('training', faceNp)
+        #cv2.imshow('training', faceNp)
         cv2.waitKey(10)
     return np.array(IDs), faces
 
@@ -39,4 +39,4 @@ if not os.path.exists('trainer'):
 recognizer.save('trainer/huanluyen.yml')
 cv2.destroyAllWindows()
 print("Trained!")
-speak("Trained!")
+speak("Trained! Ready to recognize")
