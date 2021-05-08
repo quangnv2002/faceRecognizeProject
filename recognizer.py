@@ -11,8 +11,29 @@ import PIL.ImageTk
 from PIL import Image,ImageTk
 import csv
 from datetime import datetime
+import pyttsx3
+
+
 #--------------------------------------------------------------------
-# CODE KET NOI DU LIEU NHAN DIEN HINH ANH KHUON MAT
+
+bot = pyttsx3.init()
+voice = bot.getProperty('voices')
+bot.setProperty('voice',voice[1].id) # chon giong nu
+def speak(audio):
+    print('BOT : ')
+    print(audio)
+    bot.say(audio)
+    bot.runAndWait()
+#speak("hello")
+def Welcome():
+    hour = datetime.now().hour
+    if hour>=0 and hour<12:
+        speak("Good Morning everyone")
+    elif hour>=12 and hour<18:
+        speak("Good Afternoon everyone")
+    elif hour >= 18 and hour < 24:
+        speak("Good Night everyone")
+Welcome()
 
 face_cascade = cv2.CascadeClassifier('library/khuon_mat.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
@@ -91,7 +112,9 @@ def changeEntryText(entry, text):
         entry.delete(0,END)
     except:
         entry.delete('1.0', END)
+        #speak("hello")
     entry.insert(END,text)
+
 
 
 def markAttendance(name):
@@ -151,9 +174,7 @@ def updateFrame():
     window.after(15, updateFrame)
 
 updateFrame()
-now = datetime.now()
-dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-print("Ngay va gio hien tai =", dt_string)
+
 window.mainloop()
 
 
