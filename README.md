@@ -18,9 +18,9 @@ All the final codes are stored in:
 - [addData](https://github.com/quangnv2002/faceRecognizeProject/blob/master/addData.py)
 - [training](https://github.com/quangnv2002/faceRecognizeProject/blob/master/training.py)
 - [recognizer](https://github.com/quangnv2002/faceRecognizeProject/blob/master/recognizer.py)
+- [Record](https://github.com/quangnv2002/faceRecognizeProject/blob/master/Record.csv)
 
-The [ResultFile](https://github.com/quangnv2002/licensePlateRecog/tree/master/ResultFile) notebook is our final work. 
-In short, it contains license plates recognition results at different angles and conditions
+The [Record.csv](https://github.com/quangnv2002/faceRecognizeProject/blob/master/Record.csv) notebook is our final results. 
 
 For demonstration, 
 - Clone this repository 
