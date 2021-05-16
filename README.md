@@ -25,8 +25,10 @@ The [Record.csv](https://github.com/quangnv2002/faceRecognizeProject/blob/master
 For demonstration, 
 - Clone this repository 
 - Install all the [requirements](#requirement)
-- Add the image to be identified to the file [licenseplateImg](https://github.com/quangnv2002/licensePlateRecog/tree/master/licenseplateImg)
-- Execute [processing.py](https://github.com/quangnv2002/licensePlateRecog/blob/master/processing.py)
+- Execute [addData.py](https://github.com/quangnv2002/faceRecognizeProject/blob/master/addData.py)
+- Execute [recognizer.py](https://github.com/quangnv2002/faceRecognizeProject/blob/master/recognizer.py)
+- Finally, open [Record.csv](https://github.com/quangnv2002/faceRecognizeProject/blob/master/Record.csv) to see the results 
+
 
 
 ## [Authors](#author)
