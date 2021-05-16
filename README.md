@@ -10,7 +10,7 @@ This is our project about face recognization
 
 ##### Install requirements via [pip](https://pip.pypa.io/en/stable/)
 ```bash
-pip install numpy pillow opencv-python matplotlib easyocr
+pip install numpy pillow opencv-python pyttsx3 pickle 
 ```
 
 ## [Usage](#usage)
