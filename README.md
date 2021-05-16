@@ -14,7 +14,8 @@ pip install numpy pillow opencv-python pyttsx3 pickle
 ```
 
 ## [Usage](#usage)
-All the final codes are stored in [processing](https://github.com/quangnv2002/licensePlateRecog/blob/master/processing.py)
+All the final codes are stored in:
+- [addData](https://github.com/quangnv2002/faceRecognizeProject/blob/master/addData.py)
 
 The [ResultFile](https://github.com/quangnv2002/licensePlateRecog/tree/master/ResultFile) notebook is our final work. 
 In short, it contains license plates recognition results at different angles and conditions
