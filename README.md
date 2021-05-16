@@ -20,7 +20,7 @@ All the final codes are stored in:
 - [recognizer](https://github.com/quangnv2002/faceRecognizeProject/blob/master/recognizer.py)
 - [Record](https://github.com/quangnv2002/faceRecognizeProject/blob/master/Record.csv)
 
-The [Record.csv](https://github.com/quangnv2002/faceRecognizeProject/blob/master/Record.csv) notebook is our final results. 
+The [Record.csv](https://github.com/quangnv2002/faceRecognizeProject/blob/master/Record.csv) is our final results. 
 
 For demonstration, 
 - Clone this repository 
